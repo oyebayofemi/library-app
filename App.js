@@ -1,20 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import styles from './src/styles/structure';
+import LoginScreen from './src/screens/LoginScreen';
+import { Provider } from 'react-redux';
+import { store } from './src/redux/store';
+import AppLoader from './src/components/AppLoader';
 
-export default function App() {
+export default function App({ navigation }) {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Provider store={store}>
+      <AppLoader />
+      <NavigationContainer>
+        <View style={styles.container}>
+          <LoginScreen />
+        </View>
+      </NavigationContainer>
+    </Provider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
